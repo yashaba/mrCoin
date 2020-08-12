@@ -1,0 +1,39 @@
+<div class="back-link" *ngIf='!isEditing' class="flex space-between">
+    <a routerLink="/contacts" routerLinkActive="router-link-active"><button class="back-link"><i class="el-icon-arrow-left"></i></button></a>
+    <el-button style="height: 20px; line-height: 0px;" (click)='isEditing=!isEditing'>Edit</el-button>
+</div>
+
+<div *ngIf='!isEditing'>
+    <div class="flex column justify-center align-center text-center">
+        <ngx-avatar size='100' name="{{contactToEdit.name}}"></ngx-avatar>
+        <div>
+            {{contactToEdit.name}} <br> {{contactToEdit.phone}} <br> {{contactToEdit.email}}
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <el-input placeholder="Balance: {{currUser.coins}}" (change)='isAmountValid()' [(model)]='amountToTransfer'></el-input>
+        <button [swal]="transferSwal" [disabled]='!isAmountValid()'>Transfer</button>
+    </div>
+    <swal #transferSwal title="You are about to send {{ amountToTransfer }}BTC to {{contactToEdit.name}} are you sure?" text="This cannot be undone" icon="question" [showCancelButton]="true" [focusCancel]="true" [validationMessage]='true' (confirm)='transferCoins()'>
+    </swal>
+</div>
+
+<div *ngIf='isEditing'>
+
+    <a routerLink="/contacts" routerLinkActive="router-link-active"><button  class="back-link"><i class="el-icon-arrow-left"></i></button></a>
+
+    <form (submit)="saveContact()" class="column-layout">
+        <el-input required type="text" minlength="3" placeholder="name" name="name" [(model)]='contactToEdit.name'></el-input>
+
+        <el-input required type="text" name="email" placeholder="email" [(model)]='contactToEdit.email'></el-input>
+        <el-input required type="text" name="phone" placeholder="phone number" [(model)]='contactToEdit.phone'></el-input>
+        <div class="flex">
+            <el-button (click)="saveContact()">Save</el-button>
+            <el-button (click)='isEditing=!isEditing; redirect()'>Cancel</el-button>
+        </div>
+
+    </form>
+    <div class="deleteButton">
+        <el-button (click)='deleteContact()'><i class="el-icon-delete"></i></el-button>
+    </div>
+</div>

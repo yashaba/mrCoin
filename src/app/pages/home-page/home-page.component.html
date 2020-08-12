@@ -1,0 +1,27 @@
+<div class="home-page" *ngIf='currUser'>
+
+    <h1>Welcome, {{currUser.name}}</h1>
+    <div class="flex space-between">
+        <div class="flex column"> <span class="small-text">CURRENT BALANCE:</span> <span> BTC: <span class="green">{{currUser.coins}}</span></span>
+            <span> Rate: {{exchangeRate}}</span> </div>
+        <div class="flex column"><span class="small-text">BALANCE TO USD:</span> <span class="green"> ${{btcToUsd }}</span> </div>
+
+    </div>
+
+    <div style="max-width: 500px;">
+        <app-chart></app-chart>
+    </div>
+
+    <div><span class="small-text">RECENT MOVES:</span>
+        <app-moves [exchangeRate]='exchangeRate'></app-moves>
+
+    </div>
+
+</div>
+
+
+
+<div *ngIf='!currUser'>
+    <p>No user detected please signup </p>
+    <button (click)='onSignUp()'> Sign up </button>
+</div>

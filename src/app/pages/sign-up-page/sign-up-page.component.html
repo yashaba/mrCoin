@@ -1,0 +1,5 @@
+<!-- <form #signUpForm='ngForm' (submit)='createUser(name.value)'> -->
+<div class="flex justify-center">
+    <el-input type="text" required minlength="5" [(model)]='nameFromEl' #name name="name" placeholder="Full Name"></el-input>
+    <el-button (click)='createUser()'>Sign Up</el-button>
+</div>

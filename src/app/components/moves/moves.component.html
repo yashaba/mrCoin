@@ -1,0 +1,5 @@
+<div *ngFor='let move of moves'>
+    <span class="green">BTC{{move.amount}}</span> | <span class="green">${{(move.amount / exchangeRate).toFixed(3)}}</span>
+    <br> {{move.sentTo}} , {{move.at |date}}
+
+</div>

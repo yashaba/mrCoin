@@ -1,0 +1,12 @@
+<div class="links flex space-between">
+    <a routerLink="" routerLinkActive="router-link-active"><button class="back-link"><i class="el-icon-arrow-left"></i></button></a>
+
+    <a routerLink="/contacts/details/" routerLinkActive="router-link-active">
+        <el-button> New</el-button>
+    </a>
+</div>
+<div class="contact-list">
+    <div class="flex column " *ngFor='let contact of contacts'>
+        <app-contact-preview [contact]='contact'></app-contact-preview>
+    </div>
+</div>

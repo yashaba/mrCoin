@@ -1,0 +1,16 @@
+.contact {
+    list-style: none;
+    background-color: #1F2D3D;
+    width: 400px;
+    text-align: center;
+    margin: 10px auto auto;
+    cursor: pointer;
+    border-radius: 25px;
+    &:hover {
+        background-color: #344a64;
+    }
+}
+
+li {
+    cursor: pointer;
+}
